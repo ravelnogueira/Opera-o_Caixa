@@ -12,7 +12,7 @@ class Caixa():
     self.status = status.LIVRE
     self.Total_Atendimentos = 0
  
-  def Atende_Cliente(self, cliente:Cliente)->str:
+  def atende_cliente(self, cliente:Cliente)->str:
     if (cliente == None):
       return "É preciso informar um cliente"
     
@@ -31,27 +31,21 @@ class Caixa():
     if(self.status == status.OCUPADO):
       self.status = status.LIVRE
       self.Total_Atendimentos +=1
+      return
     
     if(self.status == status.DESATIVADO):
       return "Caixa desativado"
       
-  def Encerra_Caixa(self):
+  def encerra_caixa(self):
     if(self.status == status.DESATIVADO):
       return "Caixa já se encontra desativado"
 
     if(self.status == status.OCUPADO):
-      resposta = ""
-      while(resposta not in resposta_Encerramento_Afirmativa or resposta not in resposta_Encerramento_Negativa):
-        resposta = input("O caixa está em atendimento, deseja encerrar mesmo assim?")
-        if(resposta in resposta_Encerramento_Afirmativa):
-          self.status = status.DESATIVADO
-          return("Caixa desativado")
-        elif(resposta in resposta_Encerramento_Negativa):
-          return("Caixa segue atendendo")
+          return "Caixa Ocupado"
     else:
       self.status == status.DESATIVADO
 
-  def Abrir_Caixa(self):
+  def abrir_caixa(self):
     if(self.status != status.DESATIVADO):
       return "Caixa já está aberto"
 

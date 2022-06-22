@@ -2,6 +2,7 @@ from typing import NoReturn, List
 from caixa import Caixa
 from cliente import Cliente
 from fila_atendimento import FilaAtendimento
+from statuscaixa import * 
 
 class Orquestra_Caixa():
 
@@ -15,19 +16,16 @@ class Orquestra_Caixa():
   def atende_cliente(self, cliente: Cliente):
     for caixa in self.lista_caixas:
       if (caixa.esta_disponivel()):
-        caixa.Atende_Cliente(cliente)
-        return
+        caixa.atende_cliente(cliente)
+        return(f'Caixa {caixa.numero} atendendo {cliente}')
+    
     self.fila_espera.fim_fila(cliente)
-    print(f'{cliente} foi para a fila')
+    return(f'{cliente} foi para a fila')
 
   def finaliza_atendimento(self, numero_caixa: int):
     caixa = self.lista_caixas[numero_caixa-1]
-
-    msg = caixa.finaliza_atendimento()
-    if (msg == "OK"):
-      print (msg)
-      return
-
+    if (caixa.status == status.LIVRE):
+      return "Caixa já se encontra livre"
     if (self.fila_espera.tamanho_fila() > 0):
       cliente = self.fila_espera.proximo_cliente()
       self.atende_cliente(cliente)
@@ -49,8 +47,7 @@ caixa.atende_cliente("Aureo")
 caixa.atende_cliente("Marinho")
 caixa.atende_cliente("Villarim")
 caixa.atende_cliente("Patricia")
-
 caixa.teste()
 caixa.finaliza_atendimento(3)
 caixa.finaliza_atendimento(4)
-caixa.mostra_numero_caixa().__str__()
+caixa.mostra_numero_caixa()
