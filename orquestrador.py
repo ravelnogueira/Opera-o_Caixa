@@ -40,14 +40,3 @@ class Orquestra_Caixa():
         
 caixa = Orquestra_Caixa(4)
 
-caixa.mostra_numero_caixa()
-caixa.atende_cliente("Ravel")
-caixa.atende_cliente("Toninho")
-caixa.atende_cliente("Aureo")
-caixa.atende_cliente("Marinho")
-caixa.atende_cliente("Villarim")
-caixa.atende_cliente("Patricia")
-caixa.teste()
-caixa.finaliza_atendimento(3)
-caixa.finaliza_atendimento(4)
-caixa.mostra_numero_caixa()
